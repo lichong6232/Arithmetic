@@ -10,7 +10,9 @@ public class DynamicPlaning {
 //		System.out.println(isPlalindrome("bb"));
 		
 //		System.out.println("需要在末尾添加的字符为："+addTailStringTurnToPlalindrome("abb"));
-		int job[]={3072,3072,7168,3072,1024};
+		/*int map[][]=new int[][]{{1,2,3},{1,1,1}};
+		System.out.println(getMinPath(map,2,3));*/
+		/*int job[]={3072,3072,7168,3072,1024};
 		int jobLength[]=new int[job.length];
 		int sum=0;
 		for(int i=0;i<job.length;i++){
@@ -21,7 +23,8 @@ public class DynamicPlaning {
 		int w=sum/2;
 		int ret=getMinTimeDoubleCpu(w,jobLength);
 		int countTimes=(sum-ret)<<10;
-		System.out.println(countTimes);
+		System.out.println(countTimes);*/
+		System.out.println(getMaxCommonSequenceLength("1A2C3D4B56","B1D23CA45B6A"));
 	}
 	
 	/*
@@ -139,6 +142,24 @@ public class DynamicPlaning {
 	 * 0-1背包问题
 	 * 假设现有容量10kg的背包，另外有3个物品，分别为a1，a2，a3。物品a1重量为3kg，价值为4；物品a2重量为4kg，价值为5；物品a3重量为5kg，价值为6。将哪些物品放入背包可使得背包中的总价值最大？
 	 */
+	public static int maxPrice(int weight[], int price[], int maxWeight){
+		int dp[][]=new int[weight.length+1][maxWeight+1];
+		for (int i=1;i<dp.length;i++){
+			for (int j=1;j<dp[0].length;j++){
+				if (weight[i-1]<j){
+					if (dp[i-1][j]<dp[i-1][j-weight[i-1]]+price[i-1]){
+						dp[i][j]=dp[i-1][j-weight[i-1]]+price[i-1];
+					}else {
+						dp[i][j]=dp[i-1][j];
+					}
+				}else {
+					dp[i][j]=dp[i-1][j];
+				}
+			}
+		}
+		return dp[weight.length][maxWeight];
+
+	}
 	
 	
 	/*
@@ -160,6 +181,23 @@ public class DynamicPlaning {
 		返回：4
 	 * 
 	 */
+
+	public static int getMinPath(int map[][],int m, int n){
+		int dp[][]=new int[m][n];
+		dp[0][0]=map[0][0];
+		for (int i=1;i<m;i++){
+			dp[i][0]=dp[i-1][0]+map[i][0];
+		}
+		for (int j=1;j<n;j++){
+			dp[0][j]=dp[0][j-1]+map[0][j];
+		}
+		for (int i=1;i<m;i++){
+			for (int j=1;j<n;j++){
+				dp[i][j]=dp[i-1][j]<dp[i][j-1]?dp[i-1][j]:dp[i][j-1]+map[i][j];
+			}
+		}
+		return dp[m-1][n-1];
+	}
 	
 	
 	
@@ -192,6 +230,24 @@ public class DynamicPlaning {
 		"1A2C3D4B56",10,"B1D23CA45B6A",12
 		返回：6
 	 */
+
+	public static int getMaxCommonSequenceLength(String s1, String s2){
+		int length1 = s1.length();
+		int length2 = s2.length();
+		int dp[][] = new int [length1+1][length2+1];
+		for (int i=1;i<=length1;i++){
+			for (int j=1;j<=length2;j++){
+				if (s1.charAt(i-1)==s2.charAt(j-1)){
+					dp[i][j]=dp[i-1][j-1]+1;
+				}else {
+					dp[i][j]=Math.max(dp[i-1][j],dp[i][j-1]);
+				}
+			}
+		}
+		return dp[length1][length2];
+
+
+	}
 	
 	
 	

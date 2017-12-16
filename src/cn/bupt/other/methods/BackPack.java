@@ -16,6 +16,7 @@ public class BackPack {
 	
 	
 	public static int[][] solution(int maxWeight,int w[],int p[]){
+		//c[i][j]表示前i个物品装入容量为j的背包的最大价值
 		int c[][]=new int[w.length+1][maxWeight+1];
 		for(int i=0;i<c.length;i++){
 			c[i][0]=0;
@@ -26,7 +27,8 @@ public class BackPack {
 		for(int i=1;i<c.length;i++){
 			for(int j=1;j<c[i].length;j++){
 				if(w[i-1]<=j){
-					
+
+					//这部分有两个含义一是当背包容量足够大时，可以将当前的物品直接放进去，二是将一个物品取出来，放进当前物品。
 					if(c[i-1][j]<c[i-1][j-w[i-1]]+p[i-1]){
 						c[i][j]=c[i-1][j-w[i-1]]+p[i-1];
 					}else{

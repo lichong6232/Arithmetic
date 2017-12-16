@@ -87,8 +87,7 @@ public class AllSortMethod {
 			}
 			++q;
 		}
-//		System.out.println("p:"+p+",q:"+q+",a[p]:"+a[p]);
-		
+		System.out.println("p:"+p+",q:"+q+",a[p]:"+a[p]);
 		swap(a, left, p);
 		System.out.println(Arrays.toString(a));
 		return p;
@@ -241,9 +240,6 @@ public class AllSortMethod {
 			
 		}
 	}
-	
-	
-	
 	public static void builadMaxHeap1(int a[],int lastIndex){
 		for(int i=(lastIndex-1)/2;i>=0;i--){
 			int k=i;
@@ -330,7 +326,8 @@ public class AllSortMethod {
 //		mergeSort(a,0,a.length-1);
 //		heapSort(a);
 //		countSort(a);
-		quickSort2(a, 0, a.length-1);
+//		quickSort2(a, 0, a.length-1);
+		quickSort1(a,0,a.length);
 		System.out.println(Arrays.toString(a));
 	}
 

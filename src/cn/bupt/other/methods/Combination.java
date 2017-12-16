@@ -18,7 +18,8 @@ public class Combination {
 			System.out.println(s);
 		}*/
 		
-		Set<String> set=getMFromN(3,5);
+		Set<String> set=getMFromN(2,5);
+		System.out.println(set);
 		System.out.println(set.size());
 	
 		

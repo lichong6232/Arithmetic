@@ -20,7 +20,7 @@ public class Combination {
 		/*Set<String> set=getMFromN(2,4);
 		System.out.println(set);
 		System.out.println(set.size());*/
-        List<List<Integer>> mFromNByRecursion = getMFromNByRecursion(2, 4);
+        List<List<Integer>> mFromNByRecursion = getMFromNByRecursion(4, 4);
         System.out.println(mFromNByRecursion);
 
 
@@ -66,6 +66,45 @@ public class Combination {
             list.add(i);
         }
         return getMFromNByRecursion(list,m);
+    }
+
+    public static List<List<Integer>> allSort(int m,int n){
+        List<Integer> list = new ArrayList<>();
+        for (int i=1;i<=n;i++){
+            list.add(i);
+        }
+        return allSort(list,m);
+    }
+
+    public static List<List<Integer>> allSort(List<Integer> list,int m){
+        List<List<Integer>> result = new ArrayList<>();
+
+        if (list.size()==0){
+            return result;
+        }
+
+        if (m==1){
+            for (int i=0;i<list.size();i++){
+                List<Integer> temp = new ArrayList<>();
+                temp.add(list.get(i));
+                result.add(temp);
+            }
+            return result;
+        }
+        for (int i=0;i<list.size();i++){
+            Integer removed = list.remove(i);
+            for (List<Integer> chileResult : allSort(list, m - 1) ){
+                List<Integer> temp = new ArrayList<>();
+                temp.add(removed);
+                temp.addAll(chileResult);
+                result.add(temp);
+            }
+            list.add(i,removed);
+
+        }
+
+        return result;
+
     }
 
     public static List<List<Integer>> getMFromNByRecursion(List<Integer> list,int m){

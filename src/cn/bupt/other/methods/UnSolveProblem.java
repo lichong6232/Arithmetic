@@ -1,5 +1,7 @@
 package cn.bupt.other.methods;
 
+import java.util.Arrays;
+
 public class UnSolveProblem {
 	
 	/*
@@ -148,8 +150,10 @@ public class UnSolveProblem {
 //		System.out.println(isMatch("abcabc",2));
 //		System.out.println(isRepeatPattern1("abcabcabc"));
 //		System.out.println(isRepeatPattern2("abcdabc"));
-		int a[]={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
-		System.out.println(getBugBersion(a,0,a.length-1));
+		/*int a[]={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
+		System.out.println(getBugBersion(a,0,a.length-1));*/
+		System.out.println(Arrays.toString(getNext("abcabcabc")));
+		System.out.println(isRepeatPattern("abcabcabc"));
 	}
 
 }

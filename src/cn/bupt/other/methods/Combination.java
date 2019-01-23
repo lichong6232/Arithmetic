@@ -1,7 +1,6 @@
 package cn.bupt.other.methods;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Combination {
 	
@@ -18,13 +17,17 @@ public class Combination {
 			System.out.println(s);
 		}*/
 		
-		Set<String> set=getMFromN(2,5);
+		/*Set<String> set=getMFromN(2,4);
 		System.out.println(set);
-		System.out.println(set.size());
-	
-		
-	}
-	
+		System.out.println(set.size());*/
+        List<List<Integer>> mFromNByRecursion = getMFromNByRecursion(2, 4);
+        System.out.println(mFromNByRecursion);
+
+
+    }
+
+
+
 	public static void move(int a[],int tag){
 		int sum=0;
 		for(int i=0;i<tag;i++){
@@ -50,7 +53,69 @@ public class Combination {
 		}
 		return sb.toString();
 	}
-	
+
+    /**
+     * 通过递归算法实现
+     * @param m
+     * @param n
+     * @return
+     */
+	public static List<List<Integer>> getMFromNByRecursion(int m,int n){
+        List<Integer> list = new ArrayList<>();
+        for (int i=1;i<=n;i++){
+            list.add(i);
+        }
+        return getMFromNByRecursion(list,m);
+    }
+
+    public static List<List<Integer>> getMFromNByRecursion(List<Integer> list,int m){
+	    List<List<Integer>> result = new ArrayList<>();
+
+	    if (list.size()==0){
+	        return result;
+        }
+
+	    if (m==1){
+	        for (int i=0;i<list.size();i++){
+	            List<Integer> temp = new ArrayList<>();
+	            temp.add(list.get(i));
+	            result.add(temp);
+            }
+            return result;
+        }
+        int i=0;
+        Integer removed = list.remove(i);
+        for (List<Integer> chileResult : getMFromNByRecursion(list, m - 1) ){
+            List<Integer> temp = new ArrayList<>();
+            temp.add(removed);
+            temp.addAll(chileResult);
+            result.add(temp);
+        }
+
+        for (List<Integer> chileResult : getMFromNByRecursion(list, m) ){
+            List<Integer> temp = new ArrayList<>();
+            temp.addAll(chileResult);
+            result.add(temp);
+        }
+
+        list.add(i,removed);
+
+
+        return result;
+
+    }
+
+
+
+    /**
+     * 算法思想：本程序的思路是开一个数组b，其长度和数据数组一致，其前N位为1，N就是要取的数的个数，然后按照b的数据为1的下标来取数据数组的数字
+     然后从左到右扫描数组b元素值的“10”组合，找到第一个“10”组合后将其变为
+     “01”组合，同时将其左边的所有“1”全部移动到数组的最左端，“0”移到所有“1”和变为了“01”的中间
+     当b数组最右边的N个元素全部为1时 组合完毕
+     * @param m
+     * @param n
+     * @return
+     */
 	public static Set<String> getMFromN(int m,int n){
 		Set<String> set=new HashSet<String>();
 		int temp[]=new int[n];

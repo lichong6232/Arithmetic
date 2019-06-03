@@ -1,5 +1,8 @@
 package cn.bupt.queue;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class SequenceQueue1 {
 	
 	private int maxSize;
@@ -25,6 +28,8 @@ public class SequenceQueue1 {
 			queue[end++]=o;
 			end=end==maxSize?0:end;
 		}
+		Queue<String> queue = new LinkedList<>();
+		queue.size();
 		
 	}
 	

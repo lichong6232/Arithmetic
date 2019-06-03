@@ -1,5 +1,7 @@
 package cn.bupt.other.methods;
 
+import java.util.Arrays;
+
 public class BackPack {
 	
 	public static void main(String[] args) {
@@ -11,7 +13,63 @@ public class BackPack {
 				System.out.print(c[i][j]+" ");
 			}
 			System.out.println();
-		} 
+		}
+
+		System.out.println(c[w.length][10]);
+		System.out.println(solutionByRecursion(w,p,10,w.length-1));
+		System.out.println(solutionByRecursion(w,p,10,w.length-1,new int[w.length]));
+        System.out.println(solutionByDp(w,p,10));
+
+	}
+
+	public static int solutionByRecursion(int w[], int p[], int maxWeight, int n){
+		if (n==-1){
+			return 0;
+		}
+		if (w[n]>maxWeight){
+			return solutionByRecursion(w,p,maxWeight,n-1);
+		}else {
+			return Math.max(solutionByRecursion(w,p,maxWeight,n-1),p[n]+solutionByRecursion(w,p,maxWeight-w[n],n-1));
+
+		}
+	}
+
+	public static int solutionByRecursion(int w[], int p[], int maxWeight, int n,int result[]){
+		if (n==-1){
+			return 0;
+		}
+		if (result[n]!=0){
+			return result[n];
+		}
+		if (w[n]>maxWeight){
+			int res = solutionByRecursion(w,p,maxWeight,n-1);
+			result[n] = res;
+			return res;
+		}else {
+			int res = Math.max(solutionByRecursion(w,p,maxWeight,n-1),p[n]+solutionByRecursion(w,p,maxWeight-w[n],n-1));
+			result[n] = res;
+			return res;
+
+		}
+	}
+
+	public static int solutionByDp(int w[], int p[], int maxWeight){
+		int dp[][] = new int[w.length+1][maxWeight+1];
+		for (int i = 1;i<dp.length;i++){
+		    for (int j=1;j<dp[i].length;j++){
+		        int weight = j;
+		        if (w[i-1]>weight){
+		            dp[i][j] = dp[i-1][j];
+                }else {
+		            dp[i][j] = Math.max(dp[i-1][j],p[i-1]+dp[i-1][weight - w[i-1]]);
+                }
+            }
+        }
+        for (int i=0;i<dp.length;i++){
+            System.out.println(Arrays.toString(dp[i]));
+        }
+
+        return dp[w.length][maxWeight];
 	}
 	
 	

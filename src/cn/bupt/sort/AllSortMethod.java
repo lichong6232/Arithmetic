@@ -317,17 +317,17 @@ public class AllSortMethod {
 	}
 	
 	public static void main(String[] args) {
-		int a[]={5,4,3,5,1,7,8,9,2,10,1,11,20,5,4,9,7,6,3};
+		int a[]={1,4,3,2,5,2};
 //		bubble(a);
 //		quickSort(a,0,a.length-1);
 //		choiceSort(a);
 //		insertSort(a);
 //		shellSort(a);
 //		mergeSort(a,0,a.length-1);
-//		heapSort(a);
+		heapSort(a);
 //		countSort(a);
 //		quickSort2(a, 0, a.length-1);
-		quickSort1(a,0,a.length);
+//		quickSort1(a,0,a.length);
 		System.out.println(Arrays.toString(a));
 	}
 

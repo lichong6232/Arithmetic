@@ -8,12 +8,13 @@ public class BFPRT {
 	public static void main(String[] args) {
 		int a[]={4,5,1,6,2,7,3,8};
 		BFPRT bfprt=new BFPRT();
-		int result[]=bfprt.getMinKNumsByBFPRT(a, 8);
+		int result[]=bfprt.getMinKNumsByBFPRT(a, 1);
 		/*for(int i:result){
 			System.out.println(i);
 		}*/
-		System.out.println(Arrays.toString(a));
-		System.out.println(Arrays.toString(result));
+//		System.out.println(Arrays.toString(a));
+//		System.out.println(Arrays.toString(result));
+		System.out.println(bfprt.medianOfMedians(a,0,a.length-1));
 
 	}
 	

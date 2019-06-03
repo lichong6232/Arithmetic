@@ -1,12 +1,14 @@
 package cn.bupt.other.methods;
 
+import java.util.Arrays;
+
 public class DynamicPlaning {
 	
 	
 	public static void main(String[] args) {
-//		System.out.println(getMaxSubSequenceLength("abcdfcba"));
+		System.out.println(getMaxSubSequenceLength("acdea"));
 //		System.out.println(getSubSequenceCount("aba"));
-//		System.out.println(getMaxSubStringLength("abcddceba"));
+//		System.out.println(getMaxSubStringLength("acda"));
 //		System.out.println(isPlalindrome("bb"));
 		
 //		System.out.println("需要在末尾添加的字符为："+addTailStringTurnToPlalindrome("abb"));
@@ -24,7 +26,7 @@ public class DynamicPlaning {
 		int ret=getMinTimeDoubleCpu(w,jobLength);
 		int countTimes=(sum-ret)<<10;
 		System.out.println(countTimes);*/
-		System.out.println(getMaxCommonSequenceLength("1A2C3D4B56","B1D23CA45B6A"));
+//		System.out.println(getMaxCommonSequenceLength("1A2C3D4B56","B1D23CA45B6A"));
 	}
 	
 	/*
@@ -45,6 +47,9 @@ public class DynamicPlaning {
 				}
 			}
 			
+		}
+		for (int i =0;i<dp.length;i++){
+			System.out.println(Arrays.toString(dp[i]));
 		}
 		
 		return dp[0][sLength-1];
